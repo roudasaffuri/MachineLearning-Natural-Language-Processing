@@ -64,3 +64,35 @@ cm = confusion_matrix(y_test, y_pred)
 print(cm)
 accuracy = accuracy_score(y_test, y_pred)
 print(accuracy)
+
+
+
+# Function to preprocess and predict a single sentence
+def preprocess_text(text):
+  text = re.sub('[^a-zA-Z]', ' ', text).lower().split()
+  ps = PorterStemmer()
+  all_stopwords = stopwords.words('english')
+  all_stopwords.remove('not')
+  text = [ps.stem(word) for word in text if not word in set(all_stopwords)]
+  return ' '.join(text)
+
+
+# Function to transform a single preprocessed sentence
+def transform_text(text, vectorizer):
+  return vectorizer.transform([text]).toarray()
+
+
+# Function to preprocess and predict a single sentence
+def predict_sentence(sentence):
+  processed_sentence = preprocess_text(sentence)
+  transformed_sentence = transform_text(processed_sentence, cv)
+  prediction = classifier.predict(transformed_sentence)
+  return prediction
+
+
+# Input a sentence to test
+input_sentence = input("Enter a sentence to check: ")
+prediction = predict_sentence(input_sentence)
+
+# Output the prediction
+print("Prediction for the entered sentence:", "Positive" if prediction == 1 else "Negative")
