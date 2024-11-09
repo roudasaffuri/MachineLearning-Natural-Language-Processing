@@ -19,3 +19,5 @@ Custom Sentence Prediction: Allows the user to input a sentence and returns whet
 ## Example Usage
 Run the program and enter a sentence when prompted, like "The service was fantastic!".
 The output will be "Positive" if the review is classified as positive, or "Negative" otherwise.
+
+![Screenshot 2024-11-09 125908](https://github.com/user-attachments/assets/54e663f5-b939-404a-b027-eaef0b244aad)
